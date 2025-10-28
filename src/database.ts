@@ -1,7 +1,9 @@
-import { knex as setupKnex } from 'knex';
+import knex from 'knex';
 
-export const kmex = setupKnex({
-  client: 'sqlite',
+const setupKnex = knex;
+
+export const knexInstance = setupKnex({
+  client: 'sqlite3',
   connection: {
     filename: './tmp/app.db',
   },
