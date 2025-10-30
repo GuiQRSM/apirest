@@ -1,6 +1,6 @@
 import knex from 'knex';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-type Knex = import('knex').Knex;
+import type { Knex } from 'knex';
 
 const setupKnex = knex;
 
