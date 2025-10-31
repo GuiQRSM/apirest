@@ -1,4 +1,5 @@
 import fastify from 'fastify';
+import crypto from 'node:crypto';
 import { knexInstance } from './database.js';
 
 const app = fastify();
