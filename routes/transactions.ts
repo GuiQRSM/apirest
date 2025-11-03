@@ -1,4 +1,5 @@
 import { knexInstance } from '../src/database.js';
+import crypto from 'node:crypto';
 
 export async function transactionsRoutes(app) {
   app.get('/hello', async () => {
