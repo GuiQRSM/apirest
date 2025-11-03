@@ -3,6 +3,10 @@ import knex from 'knex';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { Knex } from 'knex';
 
+if (!process.env.DATABASE_URL) {
+  throw new Error('DATABASE_URL env not found!');
+}
+
 const setupKnex = knex;
 
 export const config: Knex.Config = {
