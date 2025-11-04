@@ -1,10 +1,16 @@
 import { FastifyInstance } from 'fastify';
-import { knexInstance } from '../src/database.js';
+import z from 'zod';
 
 export async function transactionsRoutes(app: FastifyInstance) {
-  app.post('/transactions', async () => {
-    const tansactions = await knexInstance('transactions').where('amount', 1000).select('*');
+  app.post('/', async (request) => {
+    const createTransactionBodySchema = z.object({
+      title: z.string(),
+      amount: z.number(),
+      type: z.enum(['credit', 'debit']),
+    });
 
-    return tansactions;
+    const body = createTransactionBodySchema.parse(request.body);
+
+    return body;
   });
 }
