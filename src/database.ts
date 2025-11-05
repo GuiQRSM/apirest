@@ -1,7 +1,7 @@
 import knex from 'knex';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { Knex } from 'knex';
-import { env } from '../env/index.js';
+import { env } from './env/index.js';
 
 const setupKnex = knex;
 

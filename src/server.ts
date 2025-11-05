@@ -1,6 +1,6 @@
 import fastify from 'fastify';
-import { env } from '../env/index.js';
-import { transactionsRoutes } from '../routes/transactions.js';
+import { env } from './env/index.js';
+import { transactionsRoutes } from './routes/transactions.js';
 
 const app = fastify();
 

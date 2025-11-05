@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify';
 import z from 'zod';
-import { knexInstance } from '../src/database.js';
+import { knexInstance } from '../database.js';
 import { randomUUID } from 'node:crypto';
 
 export async function transactionsRoutes(app: FastifyInstance) {
