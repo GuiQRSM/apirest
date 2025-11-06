@@ -10,6 +10,10 @@ export async function transactionsRoutes(app: FastifyInstance) {
     return { transactions };
   });
 
+  app.get('/:id', async (request) => {
+    request.params;
+  });
+
   app.post('/', async (request, reply) => {
     const createTransactionBodySchema = z.object({
       title: z.string(),
