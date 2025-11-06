@@ -4,6 +4,12 @@ import { knexInstance } from '../database.js';
 import { randomUUID } from 'node:crypto';
 
 export async function transactionsRoutes(app: FastifyInstance) {
+  app.get('/', async () => {
+    const transactions = await knexInstance('transactions').select();
+
+    return transactions;
+  });
+
   app.post('/', async (request, reply) => {
     const createTransactionBodySchema = z.object({
       title: z.string(),
