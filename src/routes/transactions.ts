@@ -11,15 +11,21 @@ export async function transactionsRoutes(app: FastifyInstance) {
   });
 
   app.get('/:id', async (request) => {
-    const getTransactionParamSchmema = z.object({
+    const getTransactionsParamsSchema = z.object({
       id: z.string().uuid(),
     });
 
-    const { id } = getTransactionParamSchmema.parse(request.params);
+    const { id } = getTransactionsParamsSchema.parse(request.params);
 
     const transactions = await knexInstance('transactions').where('id', id).first();
 
     return { transactions };
+  });
+
+  app.get('/summary', async () => {
+    const summary = await knexInstance('transactions').sum('amount');
+
+    return { summary };
   });
 
   app.post('/', async (request, reply) => {
