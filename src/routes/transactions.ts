@@ -23,7 +23,7 @@ export async function transactionsRoutes(app: FastifyInstance) {
   });
 
   app.get('/summary', async () => {
-    const summary = await knexInstance('transactions').sum('amount').first();
+    const summary = await knexInstance('transactions').sum('amount', { as: 'amount' }).first();
 
     return { summary };
   });
