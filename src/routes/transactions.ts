@@ -39,6 +39,12 @@ export async function transactionsRoutes(app: FastifyInstance) {
 
     const sessionId = request.cookies.sessionId;
 
+    if (!sessionId) {
+      sessionId = randomUUID();
+
+      reply.cookie('sessionId', sessionId);
+    }
+
     await knexInstance('transactions').insert({
       id: randomUUID(),
       title,
