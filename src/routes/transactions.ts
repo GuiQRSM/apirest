@@ -4,8 +4,12 @@ import { knexInstance } from '../database.js';
 import { randomUUID } from 'node:crypto';
 
 export async function transactionsRoutes(app: FastifyInstance) {
-  app.get('/', async (request) => {
+  app.get('/', async (request, reply) => {
     const sessionId = await request.cookies.sessionId;
+
+    if (!sessionId) {
+      return reply.status(401).send({ error: 'Unauthorized' });
+    }
 
     const transactions = await knexInstance('transactions').select();
 
