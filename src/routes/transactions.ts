@@ -4,7 +4,9 @@ import { knexInstance } from '../database.js';
 import { randomUUID } from 'node:crypto';
 
 export async function transactionsRoutes(app: FastifyInstance) {
-  app.get('/', async () => {
+  app.get('/', async (request) => {
+    const sessionId = await request.cookies.sessionId;
+
     const transactions = await knexInstance('transactions').select();
 
     return { transactions };
