@@ -2,19 +2,24 @@ import { FastifyInstance } from 'fastify';
 import z from 'zod';
 import { knexInstance } from '../database.js';
 import { randomUUID } from 'node:crypto';
+import { checkSessionIdExists } from '../middlewares/check-session-id-exists.js';
 
 export async function transactionsRoutes(app: FastifyInstance) {
-  app.get('/', async (request, reply) => {
-    const sessionId = await request.cookies.sessionId;
+  app.get(
+    '/',
+    {
+      preHandler: [checkSessionIdExists],
+    },
+    async (request, reply) => {
+      const { sessionId } = request.cookies;
 
-    if (!sessionId) {
-      return reply.status(401).send({ error: 'Unauthorized' });
-    }
+      const transactions = await knexInstance('transactions')
+        .where('session_id', sessionId)
+        .select();
 
-    const transactions = await knexInstance('transactions').where('session_id', sessionId).select();
-
-    return { transactions };
-  });
+      return { transactions };
+    },
+  );
 
   app.get('/:id', async (request) => {
     const getTransactionsParamsSchema = z.object({
