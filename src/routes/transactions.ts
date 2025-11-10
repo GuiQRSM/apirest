@@ -11,7 +11,7 @@ export async function transactionsRoutes(app: FastifyInstance) {
       return reply.status(401).send({ error: 'Unauthorized' });
     }
 
-    const transactions = await knexInstance('transactions').select();
+    const transactions = await knexInstance('transactions').where('session_id', sessionId).select();
 
     return { transactions };
   });
