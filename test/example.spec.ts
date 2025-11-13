@@ -3,5 +3,9 @@ import request from 'supertest';
 import { app } from '../src/app.js';
 
 test('o usuário consegue criar uma nova transação', () => {
-  await request(app.server);
+  await request(app.server).post('/transactions').send({
+    title: 'New Transaction',
+    amount: 5000,
+    type: 'credit',
+  });
 });
