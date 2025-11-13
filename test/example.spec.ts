@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import supertest from 'supertest';
+import request from 'supertest';
 import { app } from '../src/app.js';
 
 test('o usuário consegue criar uma nova transação', () => {
