@@ -1,6 +1,8 @@
-import { expect, test } from 'vitest';
+import { expect, test, beforeAll } from 'vitest';
 import request from 'supertest';
 import { app } from '../src/app.js';
+
+beforeAll(() => {});
 
 test('o usuário consegue criar uma nova transação', async () => {
   await request(app.server)
