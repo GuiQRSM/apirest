@@ -19,4 +19,6 @@ describe('Transactions routes', () => {
       })
       .expect(201);
   });
+
+  test('user can list all transactions', async () => {});
 });
