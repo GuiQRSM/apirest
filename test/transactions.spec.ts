@@ -20,5 +20,14 @@ describe('Transactions routes', () => {
       .expect(201);
   });
 
-  test('user can list all transactions', async () => {});
+  test('user can list all transactions', async () => {
+    const createTransactionsResponse = await request(app.server)
+      .post('/transactions')
+      .send({
+        title: 'New Transaction',
+        amount: 5000,
+        type: 'credit',
+      })
+      .expect(201);
+  });
 });
