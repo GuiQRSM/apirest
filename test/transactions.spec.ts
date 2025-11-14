@@ -29,6 +29,6 @@ describe('Transactions routes', () => {
 
     const cookies = createTransactionsResponse.get('Set-Cookie');
 
-    console.log(cookies);
+    await request(app.server).get('/transactions').set('Cookie', cookies).expect(200);
   });
 });
