@@ -1,4 +1,4 @@
-import { test, beforeAll, afterAll, describe } from 'vitest';
+import { test, beforeAll, afterAll, describe, expect } from 'vitest';
 import request from 'supertest';
 import { app } from '../src/app.js';
 
@@ -33,5 +33,12 @@ describe('Transactions routes', () => {
       .get('/transactions')
       .set('Cookie', cookies)
       .expect(200);
+
+    expect(listTransactionsResponse.body.transactions).toEqual([
+      expect.objectContaining({
+        title: 'New Transaction',
+        amount: 5000,
+      }),
+    ]);
   });
 });
