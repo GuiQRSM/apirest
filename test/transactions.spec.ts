@@ -29,6 +29,9 @@ describe('Transactions routes', () => {
 
     const cookies = createTransactionsResponse.get('Set-Cookie');
 
-    await request(app.server).get('/transactions').set('Cookie', cookies).expect(200);
+    const listTransactionsResponse = await request(app.server)
+      .get('/transactions')
+      .set('Cookie', cookies)
+      .expect(200);
   });
 });
