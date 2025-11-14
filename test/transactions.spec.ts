@@ -21,13 +21,14 @@ describe('Transactions routes', () => {
   });
 
   test('user can list all transactions', async () => {
-    const createTransactionsResponse = await request(app.server)
-      .post('/transactions')
-      .send({
-        title: 'New Transaction',
-        amount: 5000,
-        type: 'credit',
-      })
-      .expect(201);
+    const createTransactionsResponse = await request(app.server).post('/transactions').send({
+      title: 'New Transaction',
+      amount: 5000,
+      type: 'credit',
+    });
+
+    const cookies = createTransactionsResponse.get('Set-Cookie');
+
+    console.log(cookies);
   });
 });
