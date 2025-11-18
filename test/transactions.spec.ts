@@ -3,6 +3,7 @@ import { execSync } from 'node:child_process';
 import request from 'supertest';
 import { app } from '../src/app.js';
 import { beforeEach } from 'node:test';
+import { resetDatabase } from './setup.db.js';
 
 describe('Transactions routes', () => {
   beforeAll(async () => {
@@ -11,9 +12,9 @@ describe('Transactions routes', () => {
 
   afterAll(async () => await app.close());
 
-  beforeEach(async () => {
-    await execSync('npx knex migrate:rollback --all ');
-    await execSync('npx knex migrate:latest');
+  beforeEach(() => {
+    execSync('npm run knex migrate:rollback');
+    execSync('npm run knex migrate:latest');
   });
 
   test('user can create a new transaction', async () => {
