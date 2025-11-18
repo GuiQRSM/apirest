@@ -1,4 +1,5 @@
 import { test, beforeAll, afterAll, describe, expect } from 'vitest';
+import { execAsync } from 'node:child_process';
 import request from 'supertest';
 import { app } from '../src/app.js';
 
