@@ -12,9 +12,8 @@ describe('Transactions routes', () => {
 
   afterAll(async () => await app.close());
 
-  beforeEach(() => {
-    execSync('npm run knex migrate:rollback');
-    execSync('npm run knex migrate:latest');
+  beforeEach(async () => {
+    await resetDatabase();
   });
 
   test('user can create a new transaction', async () => {
